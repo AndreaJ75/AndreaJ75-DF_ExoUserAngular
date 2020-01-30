@@ -1,0 +1,52 @@
+<h2>Liste des Users</h2>
+
+<div>
+  <form [formGroup]="userForm">
+
+    <input id="id" type="hidden" formControlName="id">
+    <div>
+      <label for="name">
+        Name
+      </label>
+      <input id="name" type="text" formControlName="name">
+    </div>
+
+    <div>
+      <label for="firstName">
+        FirstName
+      </label>
+      <input id="firstName" type="text" formControlName="firstName">
+    </div>
+
+    <div>
+      <label for="email">
+        email
+      </label>
+      <input id="email" type="text" formControlName="email">
+    </div>
+    <button class="add-user-button" (click)="onAdduser(userForm.value)"> Create </button>
+    <button class="upd-user-button" (click)="onUpdate(userForm.value)"> Update </button>
+  </form>
+</div>
+
+<div class='ListOfUserTab'>
+  <table>
+    <tr>
+      <th> Name </th>
+      <th> First Name</th>
+      <th> Email </th>
+      <th> Delete ? </th>
+      <th> Edit ? </th>
+      <th> Edit By Id ?</th>
+    </tr>
+
+    <tr *ngFor="let user of userList ">
+      <td> {{ user.name}} </td>
+      <td> {{ user.firstName}} </td>
+      <td> {{ user.email}} </td>
+      <td><button class="deleteUser" (click)="onDeleteUser(user)"> Delete </button></td>
+      <td><button class="editUser" (click)="editUserData(user)"> Edit </button></td>
+      <td><button class ="editUserById" (click) = "editUserById(user.id)"> Edit By Id </button></td>
+    </tr>
+  </table>
+</div>
