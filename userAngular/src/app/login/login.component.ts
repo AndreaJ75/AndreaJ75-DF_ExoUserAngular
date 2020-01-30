@@ -100,10 +100,14 @@ export class LoginComponent implements OnInit {
 
     this.loginService.updateUser(userToUpdate).subscribe(
       user => {
-        const index = this.userList.indexOf(user);
-        console.log('index = ' + index);
-        this.userList[index] = user;
-        console.log("this userList [index].name : " + this.userList[index].name);
+        // const index = this.userList.indexOf(user);
+        // console.log('index = ' + index);
+        // this.userList[index] = user;
+        // console.log("this userList [index].name : " + this.userList[index].name);
+        // console.log('List size = ' + this.userList.length);
+        this.loginService.getUser().subscribe(
+          userList => this.userList = userList
+        )
       }
     )
     this.userForm.reset();
