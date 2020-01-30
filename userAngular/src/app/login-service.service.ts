@@ -23,7 +23,7 @@ export class LoginServiceService {
 
   // get a user from User table by its Id
   getUserById(userId : number) : Observable<User> {
-    return this.http.get<User>('http://localhost:8080/user' + userId);
+    return this.http.get<User>('http://localhost:8080/user/' + userId);
  }
 
   // delet user with specific user Id
@@ -38,8 +38,7 @@ export class LoginServiceService {
 
 // Update user provided as parameter
 updateUser(user:User) {
-  return this.http.put('http://localhost:8080/user/', user);
+  return this.http.put<User>('http://localhost:8080/user/', user);
 }
-
 
 }

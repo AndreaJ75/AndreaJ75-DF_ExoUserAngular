@@ -76,41 +76,34 @@ export class LoginComponent implements OnInit {
   editUserData(userToUpdate: User) {
 
     // pre-filled the form with existing user's data
-    this.userForm = this.formBuilder.group(
-      {
-        id: userToUpdate.id,
-        name: userToUpdate.name,
-        firstName: userToUpdate.firstName,
-        email: userToUpdate.email
-      }
-    )
+    this.userForm = this.formBuilder.group(userToUpdate);
+
   }
 
   editUserById(userId : number) {
-    // Retrieve user data from database using its userId
 
+    // Retrieve user data from database using its userId
     this.loginService.getUserById(userId).subscribe(
       user => {
-        // pre-filles the form with user's retrieved data
+        // If Response Entity OK => pre-fill the form with user's retrieved data
         this.userForm = this.formBuilder.group(user);
         alert ('Please update required fields');
       },
       err => alert ('User data retrieval failure : ' + err)
     )
-
-
-
   }
 
   onUpdate(userToUpdate: User) {
 
-    const index = this.userList.indexOf(userToUpdate);
-    alert ('index : ' + index);
+    // const index = this.userList.indexOf(userToUpdate);
+    // alert ('index : ' + index);
 
     this.loginService.updateUser(userToUpdate).subscribe(
       user => {
-        this.userList[index] = userToUpdate;
-        //this.userList[index].id = userToUpdate.id;
+        const index = this.userList.indexOf(user);
+        console.log('index = ' + index);
+        this.userList[index] = user;
+        console.log("this userList [index].name : " + this.userList[index].name);
       }
     )
     this.userForm.reset();
