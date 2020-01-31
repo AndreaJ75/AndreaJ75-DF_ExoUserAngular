@@ -95,16 +95,9 @@ export class LoginComponent implements OnInit {
 
   onUpdate(userToUpdate: User) {
 
-    // const index = this.userList.indexOf(userToUpdate);
-    // alert ('index : ' + index);
-
     this.loginService.updateUser(userToUpdate).subscribe(
       user => {
-        // const index = this.userList.indexOf(user);
-        // console.log('index = ' + index);
-        // this.userList[index] = user;
-        // console.log("this userList [index].name : " + this.userList[index].name);
-        // console.log('List size = ' + this.userList.length);
+      // MAJ de l'ensemble de la liste des utilisateurs
         this.loginService.getUser().subscribe(
           userList => this.userList = userList
         )
@@ -112,5 +105,4 @@ export class LoginComponent implements OnInit {
     )
     this.userForm.reset();
   }
-
 }
